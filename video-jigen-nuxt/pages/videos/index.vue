@@ -9,6 +9,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Video Jigen - Video List",
+  },
   async asyncData({ $axios }) {
     let response = await $axios.get("videos");
     let videos = response.data;

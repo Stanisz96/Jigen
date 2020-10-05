@@ -7,6 +7,9 @@
 <script>
 export default {
   props: ["video"],
+  head: {
+    title: "Edit",
+  },
 };
 </script>
 

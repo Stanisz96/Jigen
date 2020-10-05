@@ -1,7 +1,7 @@
 <template>
   <div>
     We are in video {{ video.name }}
-    <nuxt-link :to="`/videos/${video.id}/edit`">
+    <nuxt-link :to="`/videos/${video._id}/edit`">
       <button>Edit</button>
     </nuxt-link>
   </div>
@@ -10,6 +10,9 @@
 <script>
 export default {
   props: ["video"],
+  head: {
+    title: "Watch",
+  },
 };
 </script>
 
