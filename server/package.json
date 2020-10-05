@@ -1,0 +1,45 @@
+{
+  "name": "video-jigen-server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@mdi/js": "^4.9.95",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "core-js": "^3.6.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.7.2",
+    "nodemon": "^2.0.4"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
