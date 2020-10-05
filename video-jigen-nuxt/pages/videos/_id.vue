@@ -6,19 +6,24 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   head() {
     return {
       titleTemplate: `%s ${this.video.name}`,
     };
   },
-  async asyncData({ $axios, params }) {
+  async fetch({ $axios, params, store }) {
     let response = await $axios.get(`videos/${params.id}`);
     let video = response.data;
 
-    return {
-      video,
-    };
+    store.commit("SET_CURRENT_VIDEO", video);
+  },
+  computed: {
+    ...mapState({
+      video: "currentVideo",
+    }),
   },
 };
 </script>
