@@ -3,7 +3,7 @@ const middle = require('../../middlewares')
 const Tag = require('../../models/tag')
 
 // Get tags
-router.get('/', middle.authenticateToken, async (req, res) => {
+router.get('/',/* middle.authenticateToken,*/ async (req, res) => {
   try {
     const tags = await Tag.find()
     res.json(tags)

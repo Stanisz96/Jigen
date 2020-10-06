@@ -2,7 +2,7 @@
   <v-card
     max-width="300"
     hover
-    color="#d3f8d6"
+    color="#d0f5eb"
     class="rounded-card"
     v-if="active"
   >
@@ -22,21 +22,17 @@
           <v-row>
             <v-col cols="10">
               <div class="d-inline-flex flex-wrap">
-                <!-- <div
-                  class="tag"
-                  v-for="tagId in video.tagIds"
-                  :key="tagId"
-                  color="#a1e3a6"
-                >
+                <div class="tag" v-for="tagId in video.tagIds" :key="tagId">
                   <v-btn
                     v-if="getTag(tagId)"
                     class="button mr-2"
                     x-small
-                    :to="{ name: 'tag', params: { id: tagId } }"
-                    text
+                    color="#a6e3d1"
+                    elevation="0"
                     >{{ getTag(tagId).name }}</v-btn
                   >
-                </div> -->
+                  <!-- :to="{ name: 'tag', params: { id: tagId } }" -->
+                </div>
               </div>
             </v-col>
             <v-col cols="2">
@@ -105,7 +101,7 @@
   </v-card>
 </template>
 <script>
-// import { mapGetters, mapActions } from "vuex";
+import { mapGetters /*, mapActions*/ } from "vuex";
 // import { mdiHeart, mdiHeartOutline } from "@mdi/js";
 export default {
   name: "VideoListVideo",
@@ -122,11 +118,10 @@ export default {
       type: Array,
     },
   },
-  computed: {
-    // ...mapGetters(["getTag"]),
-    // liked() {
-    //   return this.video.like;
-    // },
+  methods: {
+    getTag: function (tagId) {
+      return this.tags.find((t) => t._id == tagId);
+    },
   },
   data() {
     return {
@@ -138,9 +133,6 @@ export default {
       //   mdiHeartOutline,
       // },
     };
-  },
-  methods: {
-    // ...mapActions(["likeVideo"]),
   },
 };
 </script>

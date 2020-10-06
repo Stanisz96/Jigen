@@ -1,6 +1,7 @@
 export const state = () => ({
   videos: [],
-  currentVideo: {}
+  currentVideo: {},
+  tags: []
 })
 
 export const mutations = {
@@ -9,5 +10,8 @@ export const mutations = {
   },
   SET_CURRENT_VIDEO(state, video) {
     state.currentVideo = video
-  }
+  },
+  SET_TAGS(state, tags) {
+    state.tags = tags
+  },
 }
