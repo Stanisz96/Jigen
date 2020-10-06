@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-app-bar app color="#5eb56f">
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-btn href="/" text x-large class="text--text">Home</v-btn>
+      <v-btn href="#/videos" text x-large class="text--text">Videos</v-btn>
+    </v-app-bar>
     <div id="navbar">
       <div class="navbar-links">
         <nuxt-link to="/">Home</nuxt-link>
