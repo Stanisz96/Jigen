@@ -5,7 +5,7 @@
       <v-btn to="/" text large class="text--text">Home</v-btn>
       <v-btn to="/videos" text large class="text--text">Videos</v-btn>
     </v-app-bar>
-    <div id="default-body"><Nuxt /></div>
+    <v-main><Nuxt /></v-main>
   </v-app>
 </template>
 
