@@ -25,21 +25,17 @@ export default {
   head: {
     title: "Video Jigen - Video List",
   },
-  async asyncData({ $axios, store }) {
-    let response = await $axios.get("videos");
-    let videos = response.data;
-
-    store.commit("SET_VIDEOS", videos);
-
-    response = await $axios.get("tags");
-    let tags = response.data;
-
-    store.commit("SET_TAGS", tags);
-
-    return {
-      videos,
-      tags,
-    };
+  computed: {
+    videos() {
+      return this.$store.state.videos.videos;
+    },
+    tags() {
+      return this.$store.state.tags.tags;
+    },
+  },
+  async fetch({ store }) {
+    await store.dispatch("videos/loadVideos");
+    await store.dispatch("tags/loadTags");
   },
 };
 </script>

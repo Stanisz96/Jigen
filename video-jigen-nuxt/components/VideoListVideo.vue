@@ -11,10 +11,10 @@
       <v-img :src="video.thumbnail" alt="thumbnail" class="img-card"></v-img>
       <!-- </router-link> -->
       <v-card-title class="flex-wrap pa-1">{{ video.name }}</v-card-title>
-      <!-- <v-btn depressed icon x-small @click="likeVideo(video)" class="ml-2 mb-2">
+      <v-btn depressed icon x-small @click="likeVideo(video)" class="ml-2 mb-2">
         <v-icon v-if="liked" color="#7dbd81">{{ icons.mdiHeart }}</v-icon>
         <v-icon v-else color="#7dbd81">{{ icons.mdiHeartOutline }}</v-icon>
-      </v-btn> -->
+      </v-btn>
       <v-spacer></v-spacer>
       <v-divider></v-divider>
       <v-card-actions class="pa-0">
@@ -37,9 +37,9 @@
             </v-col>
             <v-col cols="2">
               <v-btn icon @click="show = !show">
-                <!-- <v-icon>{{
+                <v-icon>{{
                   show ? "mdi-chevron-up" : "mdi-chevron-down"
-                }}</v-icon> -->
+                }}</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -59,31 +59,31 @@
     <div class="ma-1">
       <v-img :src="video.thumbnail" alt="thumbnail" class="img-card"></v-img>
       <v-card-title class="flex-wrap pa-1">{{ video.name }}</v-card-title>
-      <!-- <v-btn depressed icon x-small @click="liked = !liked" class="ml-2 mb-2">
+      <v-btn depressed icon x-small @click="liked = !liked" class="ml-2 mb-2">
         <v-icon v-if="liked" color="#7dbd81">{{ icons.mdiHeart }}</v-icon>
         <v-icon v-else color="#7dbd81">{{ icons.mdiHeartOutline }}</v-icon>
-      </v-btn> -->
+      </v-btn>
       <v-divider></v-divider>
       <v-card-actions class="pa-0">
         <v-container bottom class="pa-1">
           <v-row>
             <v-col cols="10">
               <div class="d-inline-flex flex-wrap">
-                <!-- <div
+                <div
                   class="tag"
                   v-for="tag in tags"
                   :key="tag._id"
                   color="#a1e3a6"
                 >
                   <v-btn class="button mr-2" x-small text>{{ tag.name }}</v-btn>
-                </div> -->
+                </div>
               </div>
             </v-col>
             <v-col cols="2">
               <v-btn icon @click="show = !show">
-                <!-- <v-icon>{{
+                <v-icon>{{
                   show ? "mdi-chevron-up" : "mdi-chevron-down"
-                }}</v-icon> -->
+                }}</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -101,8 +101,8 @@
   </v-card>
 </template>
 <script>
-import { mapGetters /*, mapActions*/ } from "vuex";
-// import { mdiHeart, mdiHeartOutline } from "@mdi/js";
+import { mapGetters, mapActions } from "vuex";
+import { mdiHeart, mdiHeartOutline } from "@mdi/js";
 export default {
   name: "VideoListVideo",
   props: {
@@ -118,20 +118,28 @@ export default {
       type: Array,
     },
   },
-  methods: {
-    getTag: function (tagId) {
-      return this.tags.find((t) => t._id == tagId);
+  computed: {
+    ...mapGetters({
+      getTag: "tags/getTag",
+    }),
+    liked() {
+      return this.video.like;
     },
+  },
+  methods: {
+    ...mapActions({
+      likeVideo: "videos/likeVideo",
+    }),
   },
   data() {
     return {
       hover: false,
       snackbar: false,
       show: false,
-      // icons: {
-      //   mdiHeart,
-      //   mdiHeartOutline,
-      // },
+      icons: {
+        mdiHeart,
+        mdiHeartOutline,
+      },
     };
   },
 };

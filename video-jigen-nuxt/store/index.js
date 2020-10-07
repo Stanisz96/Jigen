@@ -1,17 +1,16 @@
 export const state = () => ({
-  videos: [],
-  currentVideo: {},
-  tags: []
 })
 
-export const mutations = {
-  SET_VIDEOS(state, videos) {
-    state.videos = videos
-  },
-  SET_CURRENT_VIDEO(state, video) {
-    state.currentVideo = video
-  },
-  SET_TAGS(state, tags) {
-    state.tags = tags
-  },
-}
+// export const plugins = [
+//     createPersistedState({
+//       storage: {
+//         getItem: key => Cookies.getJSON(key),
+//         setItem: (key, value) => {
+//           value = JSON.parse(value)
+//           delete value.currentUser
+//           Cookies.set(key, value)
+//         },
+//         removeItem: key => Cookies.remove(key)
+//       }
+//     })
+// ]

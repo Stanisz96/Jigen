@@ -18,10 +18,10 @@ router.get('/:id', middle.getVideo, (req, res) => {
 })
 
 // Create video
-router.post('/', middle.authenticateToken, async (req, res) => {
-  if (res.user.admin === false) {
-    return res.status(401).json({ message: `User ${res.user.name} do not have permission` })
-  }
+router.post('/',/* middle.authenticateToken,*/ async (req, res) => {
+  // if (res.user.admin === false) {
+  //   return res.status(401).json({ message: `User ${res.user.name} do not have permission` })
+  // }
   const video = new Video({
     name: req.body.name,
     description: req.body.description,
@@ -38,10 +38,10 @@ router.post('/', middle.authenticateToken, async (req, res) => {
 })
 
 // Update video
-router.patch('/:id', middle.authenticateToken, middle.getVideo, async (req, res) => {
-  if (res.user.admin === false) {
-    return res.status(401).json({ message: `User ${res.user.name} do not have permission` })
-  }
+router.patch('/:id',/* middle.authenticateToken,*/ middle.getVideo, async (req, res) => {
+  // if (res.user.admin === false) {
+  //   return res.status(401).json({ message: `User ${res.user.name} do not have permission` })
+  // }
   if (req.body.name != null) { res.video.name = req.body.name }
   if (req.body.description != null) { res.video.description = req.body.description }
   if (req.body.thumbnail != null) { res.video.thumbnail = req.body.thumbnail }
@@ -58,10 +58,10 @@ router.patch('/:id', middle.authenticateToken, middle.getVideo, async (req, res)
 })
 
 // Delete video
-router.delete('/:id', middle.authenticateToken, middle.getVideo, async (req, res) => {
-  if (res.user.admin === false) {
-    return res.status(401).json({ message: `User ${res.user.name} do not have permission` })
-  }
+router.delete('/:id',/* middle.authenticateToken, */middle.getVideo, async (req, res) => {
+  // if (res.user.admin === false) {
+  //   return res.status(401).json({ message: `User ${res.user.name} do not have permission` })
+  // }
   try {
     await res.video.remove()
     res.json({ message: `Deleted video: ${res.video.name}` })
