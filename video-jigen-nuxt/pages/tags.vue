@@ -1,6 +1,8 @@
 <template>
   <div>
+    <!-- <client-only placeholder="Loading..."> -->
     <nuxt-child />
+    <!-- </client-only> -->
   </div>
 </template>
 
@@ -8,5 +10,5 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 </style>

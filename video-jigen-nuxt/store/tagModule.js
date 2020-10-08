@@ -11,22 +11,20 @@ export const mutations = {
     state.tags = tags
   },
   UPDATE_TAGS(state, video) {
-    let videoId = video._id
-    let videoTags = video.tagIds
     let tags = state.tags
 
     tags.forEach(tag => {
-      if (videoTags.includes(tag._id)) {
-        if (!tag.videosId.includes(videoId)) {
-          tag.videosId.push(videoId)
+      if (video.tagIds.includes(tag._id)) {
+        if (!tag.videosId.includes(video._id)) {
+          tag.videosId.push(video._id)
 
           console.log(`ADD VIDEO TO TAG: ${tag.name}`)
         }
       } else {
-        if (tag.videosId.includes(videoId)) {
-          console.log(`REMOVE VIDEO FROM TAG: ${tag.name}`)
+        if (tag.videosId.includes(video._id)) {
+          tag.videosId = tag.videosId.filter(vid => vid != video._id)
 
-          tag.videosId = tag.videosId.filter(vid => vid != videoId)
+          console.log(`REMOVE VIDEO FROM TAG: ${tag.name}`)
         }
       }
     })
@@ -48,27 +46,22 @@ export const actions = {
   async updateTags({ commit, state }, video) {
     console.log("Update tags")
 
-    let videoId = video._id
-    let videoTags = video.tagIds
     let tags = state.tags
 
     for (let tag of tags) {
-      if (videoTags.includes(tag._id)) {
-        if (!tag.videosId.includes(videoId)) {
+      if (video.tagIds.includes(tag._id)) {
+        if (!tag.videosId.includes(video._id)) {
           console.log(`ADD VIDEO TO TAG: ${tag.name}`)
 
-          tag.videosId.push(videoId)
-
+          tag.videosId.push(video._id)
           await this.$axios.patch(`/tags/${tag._id}`, tag)
         }
       } else {
-        if (tag.videosId.includes(videoId)) {
+        if (tag.videosId.includes(video._id)) {
           console.log(`REMOVE VIDEO FROM TAG: ${tag.name}`)
 
-          tag.videosId = tag.videosId.filter(vid => vid != videoId)
-
+          tag.videosId = tag.videosId.filter(vid => vid != video._id)
           await this.$axios.patch(`/tags/${tag._id}`, tag)
-
         }
       }
     }
@@ -83,10 +76,10 @@ export const actions = {
         let newTag = response.data
 
         console.log(`ADDED NEW TAG: ${newTag.name}`)
-
         commit('ADD_TAG', newTag)
 
         newTags = newTags.concat(newTag)
+
       } catch (error) {
         console.log(error)
       }

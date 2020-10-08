@@ -9,6 +9,12 @@
   </v-app>
 </template>
 
+<script>
+export default {
+  middleware: "load-videos-and-tags",
+};
+</script>
+
 <style>
 #default-body {
   max-width: 800px;

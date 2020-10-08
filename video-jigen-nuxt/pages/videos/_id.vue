@@ -3,16 +3,17 @@
     <v-row v-show="loaded">
       <v-col md="7" cols="12">
         <div class="video-style">
-          <client-only placeholder="Loading...">
-            <youtube
-              :video-id="getVideoId(video)"
-              ref="youtube"
-              fitParent
-              resize
-              :resizeDelay="0"
-              @ready="loaded = true"
-            ></youtube
-          ></client-only>
+          <!-- <client-only placeholder="Loading..."> -->
+          <youtube
+            :video-id="getVideoId(video)"
+            ref="youtube"
+            fitParent
+            resize
+            :resizeDelay="0"
+            @ready="loaded = true"
+          >
+          </youtube>
+          <!-- </client-only> -->
         </div>
       </v-col>
       <v-col md="5" cols="12">

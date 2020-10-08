@@ -33,10 +33,6 @@ export default {
       tags: (state) => state.tagModule.tags,
     }),
   },
-  async fetch({ store }) {
-    await store.dispatch("videoModule/loadVideos");
-    await store.dispatch("tagModule/loadTags");
-  },
 };
 </script>
 
