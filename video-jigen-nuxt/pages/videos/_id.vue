@@ -18,7 +18,7 @@
       </v-col>
       <v-col md="5" cols="12">
         <div class="display-1 mb-3 font-weight-regular">{{ video.name }}</div>
-        <v-btn depressed icon small @click="video.like = !video.like">
+        <v-btn depressed icon small @click="likeVideo(video)">
           <v-icon v-if="video.like" color="#7dbd81">{{
             icons.mdiHeart
           }}</v-icon>
@@ -60,7 +60,6 @@ export default {
   computed: {
     ...mapState({
       videos: (state) => state.videoModule.videos,
-      likedVideos: (state) => state.videoModule.likedVideos,
     }),
     ...mapGetters({
       getTag: "tagModule/getTag",
@@ -70,7 +69,9 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["likeVideo"]),
+    ...mapActions({
+      likeVideo: "videoModule/likeVideo",
+    }),
     playVideo() {
       this.player.playVideo();
     },

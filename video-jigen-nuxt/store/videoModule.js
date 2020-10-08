@@ -56,7 +56,7 @@ export const actions = {
       }
     }
   },
-  async likeVideo({ commit }, video) {
+  async likeVideo({ commit, state }, video) {
     let likeVideo = video
     likeVideo.like = !likeVideo.like
 
