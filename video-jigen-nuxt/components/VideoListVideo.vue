@@ -8,8 +8,10 @@
   >
     <div class="ma-1">
       <!-- <router-link :to="{ name: 'single-video', params: { id: video._id } }"> -->
-      <v-img :src="video.thumbnail" alt="thumbnail" class="img-card"></v-img>
-      <!-- </router-link> -->
+      <nuxt-link :to="`/videos/${video._id}`">
+        <v-img :src="video.thumbnail" alt="thumbnail" class="img-card"></v-img>
+        <!-- </router-link> -->
+      </nuxt-link>
       <v-card-title class="flex-wrap pa-1">{{ video.name }}</v-card-title>
       <v-btn depressed icon x-small @click="likeVideo(video)" class="ml-2 mb-2">
         <v-icon v-if="liked" color="#7dbd81">{{ icons.mdiHeart }}</v-icon>
@@ -23,15 +25,18 @@
             <v-col cols="10">
               <div class="d-inline-flex flex-wrap">
                 <div class="tag" v-for="tagId in video.tagIds" :key="tagId">
+                  <!-- <nuxt-link :to="`/tags/${tagId}`"> -->
                   <v-btn
                     v-if="getTag(tagId)"
                     class="button mr-2"
                     x-small
                     color="#a6e3d1"
                     elevation="0"
+                    :to="`/tags/${tagId}`"
                     >{{ getTag(tagId).name }}</v-btn
                   >
-                  <!-- :to="{ name: 'tag', params: { id: tagId } }" -->
+                  <!-- </nuxt-link
+                  > -->
                 </div>
               </div>
             </v-col>
@@ -120,7 +125,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getTag: "tags/getTag",
+      getTag: "tagModule/getTag",
     }),
     liked() {
       return this.video.like;
@@ -128,7 +133,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      likeVideo: "videos/likeVideo",
+      likeVideo: "videoModule/likeVideo",
     }),
   },
   data() {
