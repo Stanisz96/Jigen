@@ -1,7 +1,11 @@
+import RSVP from 'rsvp'
+
 export default async function ({ store, from }) {
   let isInitPage = !from;
   if (isInitPage) {
-    await store.dispatch("videoModule/loadVideos");
-    await store.dispatch("tagModule/loadTags");
+    await RSVP.all([
+      store.dispatch("videoModule/loadVideos"),
+      store.dispatch("tagModule/loadTags")
+    ])
   }
 }
