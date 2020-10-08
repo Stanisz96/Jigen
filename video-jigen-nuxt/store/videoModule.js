@@ -60,9 +60,9 @@ export const actions = {
     let likeVideo = video
     likeVideo.like = !likeVideo.like
 
-    await this.$axios.patch(`/videos/${video._id}`, likeVideo)
+    await this.$axios.patch(`/videos/${likeVideo._id}`, likeVideo)
 
-    commit('LIKE_VIDEO', likeVideo)
+    commit('LIKE_VIDEO', video)
   },
   async editVideo({ commit }, video) {
     await this.$axios.patch(`/videos/${video._id}`, video)

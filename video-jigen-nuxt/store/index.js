@@ -1,6 +1,4 @@
-export const state = () => ({
-})
-
+export const strict = false
 // export const plugins = [
 //     createPersistedState({
 //       storage: {
