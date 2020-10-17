@@ -35,7 +35,7 @@ router.post('/logout', getRefreshTokens, async (req, res) => {
   res.sendStatus(204)
 })
 
-router.post('/login_user', middle.getUserByName, async function (req, res) {
+router.post('/login', async function (req, res) {
   const user = res.user
 
   try {

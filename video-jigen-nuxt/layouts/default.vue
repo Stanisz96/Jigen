@@ -5,6 +5,21 @@
       <v-btn to="/" text large class="text--text">Home</v-btn>
       <v-btn to="/videos" text large class="text--text">Videos</v-btn>
       <v-btn to="/admin" text large class="text--text">Admin</v-btn>
+
+      <v-spacer />
+
+      <div v-if="$auth.loggedIn">
+        <v-btn text large class="text--text">Logout</v-btn>
+        <!-- username -->
+        <!-- logout button -->
+      </div>
+      <div v-else>
+        <v-btn to="/login" text large class="text--text">Login</v-btn>
+        <v-btn to="/register" text large class="text--text">Register</v-btn>
+
+        <!-- login -->
+        <!-- register button -->
+      </div>
     </v-app-bar>
     <v-main><Nuxt /></v-main>
   </v-app>
