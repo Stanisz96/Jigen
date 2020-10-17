@@ -48,7 +48,7 @@ export const actions = {
     let savedVideo = response.data;
 
     commit('ADD_VIDEO', savedVideo)
-    commit('UPDATE_TAGS', savedVideo)
+    commit('tagModule/UPDATE_TAGS', savedVideo, { root: true })
 
     for (let tag of rootState.tagModule.tags) {
       if (video.tagIds.includes(tag._id)) {
