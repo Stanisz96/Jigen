@@ -4,6 +4,7 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-btn to="/" text large class="text--text">Home</v-btn>
       <v-btn to="/videos" text large class="text--text">Videos</v-btn>
+      <v-btn to="/admin" text large class="text--text">Admin</v-btn>
     </v-app-bar>
     <v-main><Nuxt /></v-main>
   </v-app>

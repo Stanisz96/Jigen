@@ -50,7 +50,7 @@ export const actions = {
     commit('ADD_VIDEO', savedVideo)
     commit('UPDATE_TAGS', savedVideo)
 
-    for (let tag of rootState.tagModel.tags) {
+    for (let tag of rootState.tagModule.tags) {
       if (video.tagIds.includes(tag._id)) {
         await this.$axios.patch(`/tags/${tag._id}`, tag)
       }
@@ -72,7 +72,7 @@ export const actions = {
   async deleteVideo({ commit, rootState }, video) {
     let delVideo = video
 
-    for (let tag of rootState.tagModel.tags) {
+    for (let tag of rootState.tagModule.tags) {
       if (tag.videosId.includes(delVideo._id)) {
         tag.videosId = tag.videosId.filter(id => id != delVideo._id)
 

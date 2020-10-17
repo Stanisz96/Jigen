@@ -30,6 +30,10 @@ export const mutations = {
     })
     state.tags = tags;
   },
+  DELETE_TAG(state, tagId) {
+    let tags = state.tags.filter(t => t._id != tagId)
+    state.tags = tags
+  },
   LOGOUT_TAGS(state) {
     state.tags = []
   }
@@ -85,7 +89,23 @@ export const actions = {
       }
     }
     return newTags
-  }
+  },
+  async deleteTag({ commit, rootState }, tag) {
+    let delTag = tag
+    for (let video of rootState.videoModule.videos) {
+      if (delTag.videosId.includes(video._id)) {
+        video.tagIds = video.tagIds.filter(id => id != delTag._id)
+        let updatedVideo = video
+
+        await this.$axios.patch(`/videos/${updatedVideo._id}`)
+
+        console.log(`REMOVE TAG: ${delTag.name} FROM VIDEO: ${video.name}`)
+      }
+    }
+    await this.$axios.delete(`/tags/${delTag._id}`)
+
+    commit('DELETE_TAG', delTag._id)
+  },
 }
 export const getters = {
   getTag: state => _id => {
